@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>School Student</title>
+</head>
+<body>
+<table border="1" style="text-align:center; margin-left:auto;margin-right:auto">
+    <thead>
+    <tr>
+        <th> Id </th>
+        <th> Class No </th>
+        <th> Student Name </th>
+        <th> Maths Marks </th>
+        <th> Science Marks </th>
+        <th> Total Marks </th>
+        <th> Update</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${records.empty}">
+        <td colspan="2"> No Student Available </td>
+    </tr>
+    <tr th:each="record : ${records}">
+        <td><span th:text="${record.Id}"> Id </span></td>
+        <td><span th:text="${record.classno}"> Class No </span></td>
+        <td><span th:text="${record.studentName}"> Student Name </span></td>
+        <td><span th:text="${record.mathsMarks}"> Math Marks </span></td>
+        <td><span th:text="${record.scienceMarks}"> Science Marks </span></td>
+        <td><span th:text="${record.totalMarks}"> Total Marks </span></td>
+        <td><form th:action="@{/school/update}" method="post">
+            <input hidden type="text" th:name="Id" th:value="${record.Id}">
+            <input style="color:blue" type="submit" value="Edit">
+        </form>
+        </td>
+
+
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
